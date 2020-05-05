@@ -1,0 +1,322 @@
+﻿<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap" style="margin-top: -25px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="index.php">首页</a></li>
+                        <li><a href="shop.php">商品</a></li>
+                        <li><a href="#" class="active">确认订单</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container" style="margin-top: -50px;">
+        <div class="col-lg-12 mt-5 mt-lg-0">
+            <div class="order-summary-details">
+                <h2>确认订单</h2>
+                <div class="order-summary-content">
+                    <!-- Order Summary Table -->
+                    <div class="order-summary-table table-responsive text-center">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>商品</th>
+                                <th>价格</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="total-list">
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td>小计</td>
+                                <td><strong id="total"></strong></td>
+                            </tr>
+
+                            <tr>
+                                <td>配送方式</td>
+                                <td class="d-flex justify-content-center">
+                                    <ul class="shipping-type">
+                                        <li>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="freeshipping" name="shipping" value="free"
+                                                       class="custom-control-input" checked/>
+                                                <label class="custom-control-label" for="freeshipping">普通配送：包邮</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="SFflatrate" name="shipping"
+                                                       class="custom-control-input" value="sf"/>
+                                                <label class="custom-control-label" for="SFflatrate">顺丰配送：￥25</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>合计</td>
+                                <td><strong id="allTotal"></strong></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+
+                    <!-- Order Payment Method -->
+                    <div class="order-payment-method" style="text-align: center;">
+                        <div class="row">
+                            <!--<div class="col-md-6 row">-->
+                            <div class="col-md-12 row">
+                                <div class="single-payment-method show col-6">
+                                    <div class="payment-method-name">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="cashon" name="paymentmethod" value="cash"
+                                                   class="custom-control-input" />
+                                            <label class="custom-control-label" for="cashon">货到付款</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="single-payment-method col-6">
+                                    <!--<div class="payment-method-name">-->
+                                        <!--<div class="custom-control custom-radio">-->
+                                            <!--<input type="radio" id="alipay" name="paymentmethod" value="Alipay"-->
+                                                   <!--class="custom-control-input"/>-->
+                                            <!--<label class="custom-control-label" for="alipay">支付宝</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div class="payment-method-name">
+                                        <div class="custom-control custom-radio">
+                                            <input type="radio" id="pay" name="paymentmethod" value="pay"
+                                                   class="custom-control-input" checked/>
+                                            <label class="custom-control-label" for="pay">余额支付</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6 row">-->
+                                <!--<div class="single-payment-method col-6">-->
+                                    <!--<div class="payment-method-name">-->
+                                        <!--<div class="custom-control custom-radio">-->
+                                            <!--<input type="radio" id="wechat" name="paymentmethod" value="Wechat"-->
+                                                   <!--class="custom-control-input"/>-->
+                                            <!--<label class="custom-control-label" for="wechat">微信支付</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                <!--</div>-->
+
+                                <!--<div class="single-payment-method col-6">-->
+                                    <!--<div class="payment-method-name">-->
+                                        <!--<div class="custom-control custom-radio">-->
+                                            <!--<input type="radio" id="bank" name="paymentmethod" value="Bank"-->
+                                                   <!--class="custom-control-input"/>-->
+                                            <!--<label class="custom-control-label" for="bank">银行卡</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+
+                        <div class="summary-footer-area">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="terms" required
+                                       checked="checked"/>
+                                <label class="custom-control-label" for="terms">我已阅读并同意网站条款和条件。 </a></label>
+                            </div>
+
+                            <button id="checkout" class="btn">结算订单</button>
+
+                            <script>
+                                $(document).ready(function () {
+
+                                    function loadCart() {
+                                        $.ajax({
+                                            url: './cart.php',
+                                            type: 'POST',
+                                            data: {
+                                                'select': ''
+                                            },
+                                            async: false,
+                                            success: function (datas) {
+                                                if ('Error' in datas) {
+                                                    alert(datas['Error']);
+                                                    window.location.href = 'login.php';
+                                                } else {
+                                                    contain = ''
+                                                    var dataNum = 0
+                                                    var Total = 0
+                                                    var freight_amount = 0
+                                                    var total_amount = 0
+                                                    for (data in datas) {
+                                                        contain += '<tr>'
+                                                            + '<td><a href="./product.php?pid=' + datas[data][3] + '">' + datas[data][0] + '<strong> x ' + datas[data][1] + '</strong></a></td>'
+                                                            + '<td>' + Math.round(parseFloat(datas[data][2]) * parseInt(datas[data][1]) * 100) / 100 + '</td>'
+                                                        dataNum += 1
+                                                        Total += Math.round(parseFloat(datas[data][2]) * parseInt(datas[data][1]) * 100) / 100
+                                                    }
+                                                    $('#total').text(Total)
+
+
+                                                    total_amount = Total + freight_amount
+
+                                                    $('.total-amount').text(total_amount)
+
+                                                    if (dataNum == 0) {
+                                                        contain = '<tr><td colspan="6"><h3>购物车内暂无商品</h3></td></tr>'
+                                                        $('.order-payment-method').hide()
+                                                    }
+                                                }
+
+                                                $('#total-list').html(contain)
+                                                $('#allTotal').text(Total)
+
+                                                $(document).ready(function () {
+                                                    // $('#checkout').on('click', function () {
+                                                    //     $.ajax({
+                                                    //         url: './core/system.php',
+                                                    //         type: 'POST',
+                                                    //         data: {
+                                                    //             'delete': $(this).attr('pid'),
+                                                    //         },
+                                                    //         async: false,
+                                                    //         success: function (datas) {
+                                                    //             if ('Error' in datas) {
+                                                    //                 alert(datas['Error'])
+                                                    //             } else {
+                                                    //                 loadCart()
+                                                    //             }
+                                                    //         }
+                                                    //     })
+                                                    // })
+
+                                                    $('#SFflatrate').on('click',function () {
+                                                        if($(this).attr('checked') == 'checked')
+                                                        {
+                                                            $('#allTotal').text(Total + 25)
+                                                        }
+                                                    })
+                                                    $('#freeshipping').on('click',function () {
+                                                        if($(this).attr('checked') == 'checked')
+                                                        {
+                                                            $('#allTotal').text(Total)
+                                                        }
+                                                    })
+
+
+                                                })
+
+                                            }
+                                        })
+                                    }
+
+                                    loadCart()
+
+                                    // $('.cart-update a').on('click', function () {
+                                    //     loadCart()
+                                    // })
+
+
+                                    $('#checkout').on('click',function () {
+                                        if($('#terms').attr('checked')!='checked'){
+                                            alert('请阅读并同意我们的条款后再操作')
+                                        }
+                                        else{
+                                            $('#PayPasswdModal').modal('show').css({'padding':0}).children().css({'margin-top': Math.max(0, ($(window).height() - $(this).height()/2) / 2)/2 });
+
+                                        }
+
+                                    })
+
+
+                                    $('#PayPasswdModal').on('show.bs.modal', function (event) {
+                                        $('#fixheader').hide()
+                                        $('input[name="payPassword"]').focus()
+                                        $('input[name="payPassword"]').trigger('focus')
+                                    })
+
+
+                                    $('#PayPasswdModal').on('hide.bs.modal', function () {
+                                        $('#fixheader').show(500)
+                                    })
+
+                                    $('#validatePayPassword').on('click',function () {
+                                        reg = /[^\d]/g
+                                        if($('input[name="payPassword"]').val().length != 6 || reg.test($('input[name="payPassword"]').val()))
+                                        {
+                                            alert('请输入6位支付密码')
+                                        }
+                                        else
+                                        {
+                                                $.ajax({
+                                                    url: './core/system.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        'checkout':'',
+                                                        'validatePayPassword': $('input[name="payPassword"]').val(),
+                                                        'shipping':$('input[name="shipping"]:checked').val(),
+                                                        'payment':$('input[name="paymentmethod"]:checked').val()
+                                                    },
+                                                    async: false,
+                                                    success: function (datas) {
+                                                        if ('error' in datas) {
+                                                            alert(datas['error'])
+                                                        } else {
+                                                            for(data in datas)
+                                                            {
+                                                                alert(datas[data])
+                                                                window.location.href = "./cart.php";
+                                                            }
+                                                        }
+                                                    }
+                                                })
+                                        }
+                                    })
+
+                                })
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--== Checkout Page Content End ==-->
+</div>
+<!--== Page Content Wrapper End ==-->
+<div class="modal fade" id="PayPasswdModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <h4 class="modal-title">请输入支付密码</h4>
+                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body">
+                <input name="payPassword" class="input input-group-text mx-auto w-100" style="height: 50px;font-size: 24px" oninput="value=value.replace(/[^\d]/g,'')" type="password" maxlength="6"  minlength="6" id="payPassword" placeholder="请输入6位支付密码" />
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn bg-danger" data-dismiss="modal">取消</button>
+                <button id="validatePayPassword" type="button" class="btn btn-secondary">提交</button>
+            </div>
+
+        </div>
+    </div>
+</div>

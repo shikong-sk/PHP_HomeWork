@@ -1,0 +1,586 @@
+<div class="content-wrapper">
+
+    <div class="row page-tilte align-items-center">
+        <div class="col-md-auto">
+            <a href="#" class="mt-3 d-md-none float-right toggle-controls"><span class="material-icons">keyboard_arrow_down</span></a>
+            <h1 class="weight-300 h3 title">控制台</h1>
+            <p class="text-muted m-0 desc"></p>
+        </div>
+        <!--<div class="col controls-wrapper mt-3 mt-md-0 d-none d-md-block ">-->
+        <!--<div class="controls d-flex justify-content-center justify-content-md-end">-->
+        <!--<input type="text" class="form-control date-rage width-260" >-->
+        <!--<button type="button" class="btn btn-danger">Apply Range</button>-->
+        <!--<span class="dropdown"></span>-->
+        <!--<button type="button" id="downloadGrid" data-toggle="dropdown" class="btn btn-secondary py-1 px-2" ><span class="material-icons align-text-bottom">save_alt</span></button>-->
+        <!--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="downloadGrid">-->
+        <!--<a class="dropdown-item" href="#">Save as PDF</a>-->
+        <!--<a class="dropdown-item" href="#">Save as Image</a>-->
+        <!--<a class="dropdown-item" href="#">Save as Word</a>-->
+        <!--<div class="dropdown-divider"></div>-->
+        <!--<a class="dropdown-item" href="#">Export Excel</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+
+
+    <div class="content">
+
+
+        <div class="card mb-4">
+            <div class="card-body  p-lg-4">
+                <div class="row">
+
+
+                    <div class="col-md-6 col-lg-3  mb-4 mb-lg-0">
+                        <div class="media align-items-center">
+                            <span class="material-icons text-info mr-4 circle p-3 border border-info bg-info-light25">shopping_cart</span>
+                            <div class="media-body">
+                                <h4 class="weight-400 m-0" id="shopNum"></h4>
+                                <small class="text-muted">商品数量</small>
+                            </div>
+                        </div>
+                        <!--<div class="progress mt-3" style="height: 6px;">-->
+                        <!--<div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3  mb-4 mb-lg-0">
+                        <div class="media align-items-center">
+                            <span class="material-icons text-danger mr-3 circle p-3 border border-danger bg-danger-light25">monetization_on</span>
+                            <div class="media-body">
+                                <h4 class="weight-400 m-0" id="orderPrice"></h4>
+                                <small class="text-muted">交易金额</small>
+                            </div>
+                        </div>
+                        <!--<div class="progress mt-3" style="height: 6px;">-->
+                        <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3  mb-4 mb-md-0 ">
+                        <div class="media align-items-center">
+                            <span class="material-icons text-success mr-3 circle p-3 border border-success bg-success-light25">assignment</span>
+                            <div class="media-body">
+                                <h4 class="weight-400 m-0" id="orderWait"></h4>
+                                <small class="text-muted">待处理订单</small>
+                            </div>
+                        </div>
+                        <!--<div class="progress mt-3" style="height: 6px;">-->
+                        <!--<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                        <div class="media align-items-center">
+                            <span class="material-icons text-warning mr-3 circle p-3 border border-warning bg-warning-light25">group</span>
+                            <div class="media-body">
+                                <h4 class="weight-400 m-0" id="countUser"></h4>
+                                <small class="text-muted">用户数量</small>
+                            </div>
+                        </div>
+                        <!--<div class="progress mt-3" style="height: 6px;">-->
+                        <!--<div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--<div class="row">-->
+        <!--<div class="col-lg-8 mb-4">-->
+        <!--<div class="card  h-100">-->
+        <!--<div class="card-header py-3">Sales &amp; Users Report</div>-->
+        <!--<div class="card-body ">-->
+
+        <!--<canvas id="canvas"></canvas>-->
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-4 mb-4">-->
+        <!--<div class="card mb-4">-->
+        <!--<div class="card-body">-->
+        <!--<h6 class="weight-400 mb-3 border-left border-warning pl-2 border-width-medium">USA <span class="text-muted">Sales Report</span></h6>-->
+        <!--<div class="row">-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="progress mt-3" style="height: 6px;">-->
+        <!--<div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card mb-4">-->
+        <!--<div class="card-body">-->
+        <!--<h6 class="weight-400 mb-3 border-left border-primary pl-2 border-width-medium">USA <span class="text-muted">Sales Report</span></h6>-->
+        <!--<div class="row">-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="progress mt-3" style="height: 6px;">-->
+        <!--<div class="progress-bar bg-success" role="progressbar" style="width: 35%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card">-->
+        <!--<div class="card-body">-->
+        <!--<h6 class="weight-400 mb-3 border-left border-danger pl-2 border-width-medium">USA <span class="text-muted">Sales Report</span></h6>-->
+        <!--<div class="row">-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--<div class="col">-->
+        <!--<small class="text-muted weight-300">This Week</small>-->
+        <!--<div class="weight-400">$28,343</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="progress mt-3" style="height: 6px;">-->
+        <!--<div class="progress-bar bg-secondary" role="progressbar" style="width: 35%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar " role="progressbar" style="width: 10%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row">
+            <div class="col-lg-4 mb-4 mb-lg-0 ">
+                <div class="card h-100 ">
+                    <div class="card-header">订单状态概览</div>
+                    <div class="card-body">
+                        <!--<h3 class="weight-400 text-center mb-0"><span class="material-icons mr-2 text-success">arrow_upward</span>73,239</h3>-->
+                        <p class="text-muted text-center">点击刷新</p>
+                        <div id="chart-drawer">
+                            <canvas id="chart-area" height="220"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body table-responsive p-0">
+
+                        <table class="table  m-0">
+                            <thead>
+                            <tr>
+                                <th scope="col" width="1" class="border-top-0">订单号</th>
+                                <th scope="col" class="border-top-0">用户</th>
+                                <th scope="col" class="border-top-0">姓名</th>
+                                <th scope="col" class="border-top-0">地址</th>
+                                <th scope="col" class="border-top-0">订单状态</th>
+                                <th scope="col" class="border-top-0 text-right">支付方式</th>
+                            </tr>
+                            </thead>
+                            <tbody id="orderListTop">
+                            <tr>
+                                <td class=" align-middle text-center">
+                                    <!--<span class="user-initials bg-success-light25 text-success">MD</span>-->
+                                    <a href="users.php?u=">XXX</a>
+                                </td>
+                                <td class="align-middle">
+                                    <small class="text-muted weight-300">Mark Doessy</small>
+                                    <div><a href="#" class="weight-400">mark.doessy@gmail.com</a></div>
+                                </td>
+                                <td class="align-middle">
+                                    <small class="text-muted weight-300">New York</small>
+                                    <div class="weight-400"> 591 Valley Drive, Philadelphia</div>
+                                </td>
+                                <td class="align-middle"><span class="material-icons align-middle md-18 text-danger">expand_more</span>
+                                    32 Sec
+                                </td>
+                                <td class="align-middle text-right">@mdo</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!--<footer class="footer">-->
+    <!--<p class="text-muted m-0"><small class="float-right">Made with <span class="material-icons md-16 text-danger align-middle">favorite</span> by Akshay Kumar </small><small >FreakPixels © 2017–2018 - freakpixels.com</small></p>-->
+    <!--</footer>-->
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!--<div class="modal fade" id="switchApp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--<div class="modal-dialog modal-lg" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header px-4">-->
+<!--<h5 class="modal-title" id="exampleModalLabel">Select Application</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span class="material-icons ">close</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body p-4">-->
+
+<!--<div class="row align-items-stretch app-switcher">-->
+<!--<div class="col-lg-3 col-6 mb-4">-->
+<!--<a href="index.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 " style="color:#21C3E0;">bubble_chart</span>-->
+<!--<p class="weight-400 m-0">Dashboard</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 mb-4">-->
+<!--<a href="ecommerce-dashboard.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 text-primary">security</span>-->
+<!--<p class="weight-400 m-0">Ecommerce</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 mb-4">-->
+<!--<a href="mailbox.html" class="text-dark">-->
+<!--<div class="card h-100 active-app">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 text-danger">blur_on</span>-->
+<!--<p class="weight-400 m-0">Mail Box</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--<span class="material-icons app-selected md-16">check</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 mb-4">-->
+<!--<a href="blogger-feed-list.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 text-warning">camera</span>-->
+<!--<p class="weight-400 m-0">Blogger</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+
+
+<!--<div class="col-lg-3 col-6 mb-lg-0 mb-4">-->
+<!--<a href="task-manager.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48" style="color:#f98e69;">leak_add</span>-->
+<!--<p class="weight-400 m-0">Task Manager</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 mb-lg-0 mb-4">-->
+<!--<a href="notes.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 text-success">color_lens</span>-->
+<!--<p class="weight-400 m-0">Notes</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 ">-->
+<!--<a href="file-uploder.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 " style="color:#9b84fb">category</span>-->
+<!--<p class="weight-400 m-0">File Manager</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--<div class="col-lg-3 col-6 ">-->
+<!--<a href="photos-videos.html" class="text-dark">-->
+<!--<div class="card h-100">-->
+<!--<div class="card-body text-center">-->
+<!--<span class="material-icons md-48 text-muted" >layers</span>-->
+<!--<p class="weight-400 m-0">Videos & Photos</p>-->
+<!--<small class="weight-300 text-muted">This is some text within a card body.</small>-->
+<!--</div>-->
+<!--</div>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--<div class="modal-footer px-4">-->
+<!--<div class="custom-control custom-checkbox mr-auto">-->
+<!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
+<!--<label class="custom-control-label" for="customCheck1">Default open this application</label>-->
+<!--</div>-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--<button type="button" class="btn btn-primary">Switch Application</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<script>
+
+    $(document).ready(function () {
+        $(".navigation").children().children().eq(0).addClass('active')
+        "use strict";
+
+        // var color = Chart.helpers.color;
+
+        // window.onload = function() {
+
+        // var ctx = document.getElementById('canvas').getContext('2d');
+        // window.myBar = new Chart(ctx, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        //         datasets: [{
+        //             label: 'Sales',
+        //             backgroundColor: color(window.chartColors.red).alpha(0.7).rgbString(),
+        //             borderColor: window.chartColors.red,
+        //
+        //             data: [
+        //                 40,10,60,90,30,70,30,25,15,75,30,90
+        //             ]
+        //         }, {
+        //             label: 'New Users',
+        //             backgroundColor: color(window.chartColors.blue).alpha(0.7).rgbString(),
+        //             borderColor: window.chartColors.blue,
+        //
+        //             data: [
+        //                 25,15,75,30,80,20,30,60,50,60,70,40
+        //             ]
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         legend: {
+        //             position: 'bottom',
+        //             display: false,
+        //         },
+        //         title: {
+        //             display: false,
+        //             text: 'Monthly Sales Report'
+        //         }
+        //     }
+        // });
+
+        var randomScalingFactor = function () {
+            return Math.round(Math.random() * 100);
+        };
+        var ctxDoughnut = document.getElementById('chart-area').getContext('2d');
+
+        var chartDraw = function () {
+            $('#chart-area').remove()
+            $('.chartjs-size-monitor').remove()
+            $('#chart-drawer').prepend('<canvas id="chart-area" height="328" style="display: block; height: 263px; width: 359px;" width="448" class="chartjs-render-monitor"></canvas>')
+            $.ajax({
+                url: '../core/system.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'orderStatus': ''
+                },
+                async: false,
+                success: function (data) {
+                    $(document).ready(function () {
+                        $('#chart-area').on('click', chartDraw)
+                        var ctxDoughnut = $('#chart-area')[0].getContext('2d');
+                        ctxDoughnut.clearRect(0, 0, 1000, 1000);
+                        window.myDoughnut = ctxDoughnut.clearRect(0, 0, 1000, 1000);
+                        window.myDoughnut = new Chart(ctxDoughnut, {
+                            type: 'doughnut',
+                            data: {
+                                datasets: [{
+                                    data: [
+                                        data[0],
+                                        data[1],
+                                        data[2]
+                                    ],
+                                    backgroundColor: [
+                                        window.chartColors.red,
+                                        window.chartColors.orange,
+                                        window.chartColors.blue,
+                                    ],
+                                    label: 'Dataset 1'
+                                }],
+                                labels: [
+                                    '待处理',
+                                    '已发货',
+                                    '已完成',
+                                ]
+                            },
+                            options: {
+                                responsive: true,
+                                legend: {
+                                    position: 'bottom',
+                                },
+                                title: {
+                                    display: false,
+                                    text: 'Chart.js Doughnut Chart'
+                                },
+                                animation: {
+                                    animateScale: true,
+                                    animateRotate: true
+                                }
+                            }
+                        });
+                    });
+                }
+            })
+
+        }
+
+        $('#chart-area').on('click', chartDraw);
+
+        window.myDoughnut = new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        0, 0, 0
+                    ],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.orange,
+                        window.chartColors.blue,
+                    ],
+                    label: 'Dataset 1'
+                }],
+                labels: [
+                    '待处理',
+                    '已发货',
+                    '已完成',
+                ]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: false,
+                    text: 'Chart.js Doughnut Chart'
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+
+        });
+
+
+        $(document).ready(function () {
+            $('#chart-area').click()
+
+            $.ajax({
+                url: '../core/system.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'data': ''
+                },
+                async: false,
+                success: function (data) {
+                    $('#shopNum').text(data[0])
+                    $('#orderPrice').text(data[1])
+                    $('#orderWait').text(data[2])
+                    $('#countUser').text(data[3])
+                }
+            })
+
+            $.ajax({
+                url: '../core/system.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'orderListTop': ''
+                },
+                async: false,
+                success: function (datas) {
+                    var contain = ''
+                    for( data in datas)
+                    {
+                            contain += "<tr>\n" +
+                            "                                        <td class=\" align-middle text-center\">" +
+                            "                                            <!--<span class=\"user-initials bg-success-light25 text-success\">MD</span>-->\n" +
+                            "                                            <div>"+datas[data][0]+"</div>" +
+                            "                                        </td>" +
+                            "                                        <td class=\" align-middle text-center\">" +
+                            "                                            <!--<span class=\"user-initials bg-success-light25 text-success\">MD</span>-->\n" +
+                            "                                            <a href=\"users.php?u="+datas[data][1]+"\">"+datas[data][2]+"</a>" +
+                            "                                        </td>" +
+                            "                                        <td class=\"align-middle\">" +
+                            "                                            <div>"+datas[data][3]+datas[data][4]+"</div>" +
+                            "                                        </td>" +
+                            "                                        <td class=\"align-middle\">" +
+                            "                                            <div class=\"weight-400\">"+datas[data][5]+"</div>" +
+                            "                                        </td>\n" +
+                            "                                        <td class=\"align-middle\">" +
+                            "                                           <div class=\"weight-400\">"+datas[data][6]+"</div>"  +
+                            "                                        <td class=\"align-middle text-right\">"+
+                            "                                           <div class=\"weight-400\">"+datas[data][7]+"</div>"  +
+                            "                                        </td>\n" +
+                            "                                    </tr>"
+                    }
+                    $('#orderListTop').html(contain)
+                }
+            })
+
+            // $('.date-rage').daterangepicker({
+            //     opens : 'left'
+            // });
+        });
+    })
+</script>

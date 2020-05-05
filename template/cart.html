@@ -1,0 +1,177 @@
+﻿<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap" style="margin-top: -25px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                        <li><a href="index.php">首页</a></li>
+                        <li><a href="shop.php">商品</a></li>
+                        <li><a href="cart.php" class="active">购物车</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->
+
+<!--== Page Content Wrapper Start ==-->
+<div id="page-content-wrapper">
+    <div class="container">
+        <!-- Cart Page Content Start -->
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Cart Table Area -->
+                <div class="cart-table table-responsive" style="background-color: #fff;">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="pro-thumbnail">预览</th>
+                            <th class="pro-title">商品</th>
+                            <th class="pro-price">价格</th>
+                            <th class="pro-quantity">数量</th>
+                            <th class="pro-subtotal">总价</th>
+                            <th class="pro-remove">删除</th>
+                        </tr>
+                        </thead>
+                        <tbody id="showCarts">
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+
+                        function loadCart(){
+                            $.ajax({
+                                url: './cart.php',
+                                type: 'POST',
+                                data: {
+                                    'select': ''
+                                },
+                                async: false,
+                                success: function (datas) {
+                                    if ('Error' in datas) {
+                                        alert(datas['Error']);
+                                        window.location.href='login.php';
+                                    }
+                                    else {
+                                        contain = ''
+                                        var dataNum = 0
+                                        var Total = 0
+                                        var freight_amount = 0
+                                        var total_amount = 0
+                                        for (data in datas) {
+                                            contain += '                            <tr><td class="pro-thumbnail"><a href="product.php?pid='+datas[data][3]+'">\n' +
+                                                '                                <img class="img-fluid" src="images/product/'+datas[data][3]+'/img.jpg" alt="Product"/></a></td>\n' +
+                                                '                            <td class="pro-title"><a href="product.php?pid='+datas[data][3]+'">'+datas[data][0]+'</a></td>\n' +
+                                                '                            <td class="pro-price"><span>'+datas[data][2]+'</span></td>\n' +
+                                                '                            <td class="pro-quantity">\n' +
+                                                '                                <div class="pro-qty"><!--<input type="text" value=" -->'+datas[data][1]+'<!-- "> --></div>\n' +
+                                                '                            </td>\n' +
+                                                '                            <td class="pro-subtotal"><span>'+ Math.round(parseFloat(datas[data][2]) * parseInt(datas[data][1]) * 100) / 100+'</span></td>\n' +
+                                                '                            <td class="pro-remove" ><a href="#" class="removeCart" pid="' + datas[data][3] + '"><i class="fa fa-trash-o"></i></a></td></tr>'
+                                            dataNum += 1
+                                            Total += Math.round(parseFloat(datas[data][2]) * parseInt(datas[data][1]) * 100) / 100
+                                        }
+                                        $('#total').text(Total)
+
+                                        if( freight_amount == 0){
+                                            $('#freight').hide()
+                                            $('#money').hide()
+                                        }
+                                        else{
+                                            $('#freight-amount').text(freight_amount)
+                                        }
+
+                                        total_amount = Total + freight_amount
+
+                                        $('.total-amount').text(total_amount)
+
+                                        if(dataNum == 0)
+                                        {
+                                            contain = '<tr><td colspan="6"><h3>购物车内暂无商品</h3></td></tr>'
+                                            $('#cartTotal').hide()
+                                        }
+                                    }
+
+                                    $(document).ready(function () {
+                                            $('.removeCart').on('click', function () {
+                                                $.ajax({
+                                                    url: './cart.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        'delete': $(this).attr('pid'),
+                                                    },
+                                                    async: false,
+                                                    success: function (datas) {
+                                                        if ('Error' in datas) {
+                                                            alert(datas['Error'])
+                                                        } else {
+                                                            loadCart()
+                                                        }
+                                                    }
+                                                })
+                                            })
+                                    })
+                                    $('#showCarts').html(contain)
+                                }
+                            })
+                        }
+
+                        loadCart()
+
+                        $('.cart-update a').on('click',function () {
+                            loadCart()
+                        })
+                    })
+                </script>
+
+                <!-- Cart Update Option -->
+                <div class="cart-update-option d-block d-lg-flex" style="background-color: #fff;">
+                    <div class="apply-coupon-wrapper">
+                        <!--<form action="#" method="post" class=" d-block d-md-flex">-->
+                            <!--<input type="text" placeholder="在此输入您的优惠码"/>-->
+                            <!--<button class="btn">提交优惠券</button>-->
+                        <!--</form>-->
+                    </div>
+                    <div class="cart-update">
+                        <a href="#" class="btn">刷新购物车</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="cartTotal">
+            <div class="col-lg-6 ml-auto">
+                <!-- Cart Calculation Area -->
+                <div class="cart-calculator-wrapper">
+                    <h3>购物清单</h3>
+                    <div class="cart-calculate-items">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tr id="money" style="background-color: #fff;">
+                                    <td>共计</td>
+                                    <td id="total"></td>
+                                </tr>
+                                <tr id="freight" style="background-color: #fff;">
+                                    <td>运费</td>
+                                    <td id="freight-amount"></td>
+                                </tr>
+                                <tr style="background-color: #fff;">
+                                    <td>总计</td>
+                                    <td class="total-amount"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <a href="checkout.php" class="btn">结账</a>
+                </div>
+            </div>
+        </div>
+        <!-- Cart Page Content End -->
+    </div>
+</div>
+<!--== Page Content Wrapper End ==-->

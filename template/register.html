@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新用户注册</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link href="./assets/css/googleFont.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.default.css" id="theme-stylesheet">
+</head>
+<body>
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content" style="    margin: auto;">
+                            <div class="logo" style="text-align: center;">
+                                <h1>欢迎注册</h1>
+                                <br>
+                                <h1 style="font-size: 3em;color:#fff;font-weight:600;">linto&nbsp;商城</h1>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center mx-auto">
+                        <div class="content">
+                            <div class="form-group">
+                                <input id="register-username" class="input-material" type="text" name="registerUsername"
+                                       placeholder="请输入用户名">
+                                <div class="invalid-feedback">
+                                    * 用户名必须大于5个字符
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="register-password" class="input-material" type="password"
+                                       name="registerPassword" placeholder="请输入密码">
+                                <div class="invalid-feedback">
+                                    * 密码长度必须大于6位数 且 必须包含数字、大小写英文字母和符号
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input id="register-passwords" class="input-material" type="password"
+                                       name="registerPasswords" placeholder="确认密码">
+                                <div class="invalid-feedback">
+                                    * 两次密码输入不一致
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <img src="" id="authCodeImage" alt="验证码" class="col-4">
+                                    <input id="register-authCode" class="input-material col-8" type="text"
+                                           name="registerAuthCode" placeholder="确认密码">
+                                    <div class="invalid-feedback text-center">
+                                        * 请输入6位验证码
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button id="regbtn" type="button" name="registerSubmit"
+                                        class="btn btn-block btn-primary">注册
+                                </button>
+                                <div id="RegisterMessage" class="invalid-feedback text-center">
+                                </div>
+                            </div>
+                            <small>已有账号?</small>
+                            <a href="login.php" class="signup">&nbsp;登录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JavaScript files-->
+<script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
+<script src="assets/js/vendor/bootstrap.min.js"></script>
+<script src="core/sha1.js"></script>
+<script>
+    $(function () {
+        function getAuthCode(){
+            $.ajax({
+                url:'./core/system.php',
+                type:'POST',
+                data:{
+                    'getAuthToken':''
+                },
+                async:false,
+                success:function (data) {
+                    $('#authCodeImage').prop({'src':'./core/VerifyCode.php?authToken='+data})
+                }
+            })
+        }
+
+        getAuthCode()
+
+        /*错误class  form-control is-invalid
+        正确class  form-control is-valid*/
+        $("#register-username").val('');
+        $("#register-password").val('');
+        $("#register-passwords").val('');
+        $("#register-authCode").val('');
+        var flagName = false;
+        var flagPas = false;
+        var flagPass = false;
+        var authPass = false;
+        var passWordExp = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)(?=.*?[!@#$%^&*() `\/\-+]).*$/
+        /*验证用户名*/
+        var name, passWord, passWords,authCode;
+        $("#register-username").change(function () {
+            name = $("#register-username").val();
+            if (name.length < 5 || name.length > 10) {
+                $("#register-username").removeClass("form-control is-valid")
+                $("#register-username").addClass("form-control is-invalid");
+                flagName = false;
+            } else {
+                $("#register-username").removeClass("form-control is-invalid")
+                $("#register-username").addClass("form-control is-valid");
+                flagName = true;
+            }
+        })
+        /*验证密码*/
+        $("#register-password").change(function () {
+            passWord = $("#register-password").val();
+
+            if ((passWord.length < 6 ) || !passWordExp.test(passWord)) {
+                $("#register-password").removeClass("form-control is-valid")
+                $("#register-password").addClass("form-control is-invalid");
+                flagPas = false;
+            } else {
+                $("#register-password").removeClass("form-control is-invalid")
+                $("#register-password").addClass("form-control is-valid");
+                flagPas = true;
+            }
+        })
+        /*验证确认密码*/
+        $("#register-passwords").change(function () {
+            passWords = $("#register-passwords").val();
+            if ( passWord == null || passWord != passWords || (passWords.length < 6 ) || !passWordExp.test(passWords)) {
+                $("#register-passwords").removeClass("form-control is-valid")
+                $("#register-passwords").addClass("form-control is-invalid");
+                flagPass = false;
+            } else {
+                $("#register-passwords").removeClass("form-control is-invalid")
+                $("#register-passwords").addClass("form-control is-valid");
+                flagPass = true;
+            }
+        })
+
+        $('#authCodeImage').click(getAuthCode)
+
+        $('#register-authCode').change(function () {
+            authCode = $('#register-authCode').val();
+            if( authCode == null || authCode.length != 6 )
+            {
+                $("#register-authCode").removeClass("form-control is-valid")
+                $("#register-authCode").addClass("form-control is-invalid");
+                authPass = false;
+            } else {
+                $("#register-authCode").removeClass("form-control is-invalid")
+                $("#register-authCode").addClass("form-control is-valid");
+                authPass = true;
+            }
+        })
+
+        $("#regbtn").click(function () {
+            if (flagName && flagPas && flagPass && authPass) {
+                $.ajax({
+                    url:'./core/system.php',
+                    type:'POST',
+                    data:{
+                        'RegisterSub':'',
+                        'username':name,
+                        'password':sha1(passWords),
+                        'authCode':authCode
+                    },
+                    async:false,
+                    success:function (data) {
+                        getAuthCode()
+                        for(k in data)
+                        {
+                            if( k == 'error')
+                            {
+                                $('#RegisterMessage').html('<h5 class="text-danger text-center" style="font-size: 16px">'+data[k]+'</h5>').show(300)
+                            }
+                            if( k == 'success')
+                            {
+                                $('#RegisterMessage').html('<h5 class="text-success text-center" style="font-size: 16px">'+data[k]+'</h5>').show(300)
+                                setTimeout(window.location.href='./login.php',3);
+                            }
+                        }
+                    }
+                })
+                localStorage.setItem("name", name);
+                localStorage.setItem("passWord", passWord);
+            } else {
+                if (!flagName) {
+                    $("#register-username").addClass("form-control is-invalid");
+                }
+                if (!flagPas) {
+                    $("#register-password").addClass("form-control is-invalid");
+                }
+                if (!flagPass) {
+                    $("#register-passwords").addClass("form-control is-invalid");
+                }
+                if (!authPass)
+                {
+                    $("#register-authCode").addClass("form-control is-invalid");
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
